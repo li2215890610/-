@@ -1,0 +1,11 @@
+<view>
+  <button bindtap="scopeWritePhotosAlbum">保存图片</button>
+  <button bindtap="scopeUserLocation">获取位置</button>
+  <button bindtap="saveIamges">保存图片</button>
+  <button bindtap="saveIamges">保存图片</button>
+  <button bindtap="saveIamges">保存图片</button>
+  <button bindtap="saveIamges">保存图片</button>
+  <button bindtap="saveIamges">保存图片</button>
+  <button bindtap="saveIamges">保存图片</button>
+  <button bindtap="saveIamges">保存图片</button>
+</view>

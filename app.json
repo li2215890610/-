@@ -1,0 +1,7 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/save-image/save-image",
+    "pages/user-location/user-location"
+  ]
+}

@@ -1,0 +1,15 @@
+<view  catchtouchmove="true"  wx:if="{{isShowOpenSetting}}">
+  <view class='mask'></view>
+  <view class='dialog'>
+    <view class='title'>{{ title }}</view>
+    <view class='content'>{{ content }}</view>
+    <view class='footer'>
+      <view class='btn_left' catchtap='cancelEvent'>{{ cancelText }}</view>
+      <view class='btn_right'>
+
+
+        <button wx:if="{{btnClickType === 'bindopensetting'}}" type="default" size="default" open-type="{{openType}}"  bindopensetting="confirmEvent" >{{ confirmText }}</button>
+      </view>
+    </view>
+  </view>
+</view>
