@@ -1,5 +1,14 @@
 <view>
-  <open-setting title="系统授权" content='我们要授权请你同意!' cancelText='取消' confirmText='授权' bind:cancelEvent="cancelEvent" bind:confirmEvent="confirmEvent" isShowOpenSetting="{{isShowOpenSetting}}">
+  <open-setting 
+  title="系统授权" 
+  content='我们要授权请你同意!' 
+  cancelText='取消' 
+  confirmText='授权' 
+  bind:cancelEvent="cancelEvent" 
+  bind:confirmEvent="confirmEvent" 
+  isShowOpenSetting="{{isShowOpenSetting}}"
+  scope="scope.writePhotosAlbum"
+  >
   </open-setting>
 
   <image src="{{urlStr}}" />

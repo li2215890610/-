@@ -32,14 +32,19 @@ Component({
       type: Boolean,
       value: false
     },
+    //控制判断是否开启
+    scope: {
+      type: String,
+      value:""
+    },
     //设置用户点击内容 button的open-type
     openType: {
-      type:String,
-      value:"openSetting"
+      type: String,
+      value: "openSetting"
     },
     btnClickType: {
       type: String,
-      value:"bindopensetting"
+      value: "bindopensetting"
     },
   },
 
@@ -67,9 +72,20 @@ Component({
       this.triggerEvent("cancelEvent")
     },
     confirmEvent(e) {
-      console.log(e);
       //触发成功回调
-      this.triggerEvent("confirmEvent");
+      let { scope} = this.data;
+      console.log(e.detail.authSetting[scope]);
+      /*
+      * 返回两个值解释
+      * state 
+      */
+      this.triggerEvent(
+        "confirmEvent", 
+        { 
+          state: e.detail.authSetting[scope],
+          scope: scope
+        }
+      );
     }
   }
 })

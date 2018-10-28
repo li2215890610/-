@@ -31,13 +31,15 @@ Page({
     })
   },
   //确认事件
-  confirmEvent() {
-    wx.showToast({
-      title: '授权成功,去保存吧!'
-    })
-    this.setData({
-      isShowOpenSetting: false
-    })
+  confirmEvent(e) {
+    if (e.detail.state && e.detail.scope === 'scope.writePhotosAlbum'){
+      wx.showToast({
+        title: '授权成功'
+      })
+      this.setData({
+        isShowOpenSetting: false
+      })
+    }
   },
 
   
