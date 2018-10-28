@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/save-image/save-image",
     "pages/user-location/user-location",
-    "pages/user-address/user-address"
+    "pages/user-address/user-address",
+    "pages/user-info/user-info"
   ]
 }

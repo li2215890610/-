@@ -1,11 +1,6 @@
 <view>
+  <button class='button'  bindtap="scopeUserInfo">用户信息</button>
   <button  class='button' bindtap="scopeWritePhotosAlbum">保存到相册</button>
   <button  class='button' bindtap="scopeUserLocation">地理位置</button>
   <button  class='button' bindtap="scopeAddress">通讯地址</button>
-  <button bindtap="saveIamges">保存图片</button>
-  <button bindtap="saveIamges">保存图片</button>
-  <button bindtap="saveIamges">保存图片</button>
-  <button bindtap="saveIamges">保存图片</button>
-  <button bindtap="saveIamges">保存图片</button>
-  <button bindtap="saveIamges">保存图片</button>
 </view>

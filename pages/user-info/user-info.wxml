@@ -1,0 +1,2 @@
+
+  <button class="button" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">点击同步</button>

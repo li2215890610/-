@@ -1,6 +1,8 @@
 Page({
-  data: {
-
+  scopeUserInfo: function(){
+    wx.navigateTo({
+      url: '/pages/user-info/user-info'
+    })
   },
   scopeWritePhotosAlbum: function (params) {
     wx.navigateTo({
