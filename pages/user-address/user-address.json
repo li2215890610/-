@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "获取收获地址",
+  "usingComponents": {
+    "open-setting": "/components/open-setting/open-setting"
+  }
+}

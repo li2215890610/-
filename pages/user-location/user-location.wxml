@@ -1,6 +1,6 @@
 <open-setting 
   title="系统授权" 
-  content='我们要授权请你同意!' 
+  content='我们要授权位置信息请你同意!' 
   cancelText='取消' 
   confirmText='授权' bind:cancelEvent="cancelEvent"     
   bind:confirmEvent="confirmEvent" 
@@ -27,7 +27,7 @@
   第三种方式
 </view>
 
-<button bindtap="getLocationTherr">第三种套路 获取位置</button>
+<button  class='button' bindtap="getLocationTherr">第三种套路 获取位置</button>
 
 <view class="desc_view">
   // 下面 <text class='small_title'> 查看位置、</text> <text class='small_title'>打开地图选择位置、</text> 都可结合上述三种方式获取
@@ -36,12 +36,12 @@
 <view class="desc_view">
   /****  查看位置 ****/
 </view>
-<button bindtap="openLocation">​使用微信内置地图查看位置。
+<button class='button' bindtap="openLocation">​使用微信内置地图查看位置。
   wx.openLocation</button>
 
 
 <view class="desc_view">
   /****  打开地图选择位置 ****/
 </view>
-<button bindtap="chooseLocation">​使用微信内置地图查看位置。
+<button  class='button' bindtap="chooseLocation">​使用微信内置地图查看位置。
   wx.openLocation</button>

@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -44,7 +44,13 @@
 				{
 					"id": -1,
 					"name": "获取位置",
-					"pathName": "pages/user-location/user-location"
+					"pathName": "pages/user-location/user-location",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "获取收获地址",
+					"pathName": "pages/user-address/user-address"
 				}
 			]
 		}

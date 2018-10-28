@@ -12,6 +12,11 @@ Page({
       url: '/pages/user-location/user-location'
     })
   },
+  scopeAddress: function(){
+    wx.navigateTo({
+      url: '/pages/user-address/user-address'
+    })
+  },
   onShareAppMessage: function() {
     return {
       title: '来自休休漠漠',

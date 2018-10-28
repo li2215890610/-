@@ -2,5 +2,5 @@
   margin-top: 30rpx;
 }
 .small_title{
-  color: green;
+  color: green
 }

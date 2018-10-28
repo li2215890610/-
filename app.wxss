@@ -1,5 +1,5 @@
 
-button{
+.button{
   margin: 30rpx;
 }
 .desc_view{

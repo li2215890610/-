@@ -1,4 +1,3 @@
-
 const app = new getApp()
 Page({
 
@@ -10,17 +9,20 @@ Page({
     isShowOpenSetting: false,
     openLocation: null
   },
-  onShow: function(){
-    let { isLocationTwo, isShowOpenSetting} = this.data;
+  onShow: function() {
+    let {
+      isLocationTwo,
+      isShowOpenSetting
+    } = this.data;
     //配合第二种方式
-    if (isLocationTwo || isShowOpenSetting){
+    if (isLocationTwo || isShowOpenSetting) {
       this.getLocationData();
     }
   },
   /**
    * 第一种方式
    */
-  getLocationOne: function(){
+  getLocationOne: function() {
     app.getSetting("scope.userLocation").then((data) => {
       this.getLocationData()
     }).catch((err) => {
@@ -34,7 +36,7 @@ Page({
   cancelEvent() {
     wx.showModal({
       title: '警告',
-      content: '不授权无法保存',
+      content: '不授权无法获取',
       showCancel: false
     })
     this.setData({
@@ -45,7 +47,7 @@ Page({
   confirmEvent(e) {
     //拿到 open-setting components 返回值
     console.log(e.detail)
-    if (e.detail.state && e.detail.scope === 'scope.userLocation')      {
+    if (e.detail.state && e.detail.scope === 'scope.userLocation') {
       wx.showToast({
         title: '授权成功'
       })
@@ -54,13 +56,8 @@ Page({
       })
     }
   },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  },
-  getLocationData: function(){
+  getLocationData: function() {
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
@@ -77,14 +74,14 @@ Page({
   /**
    * 第二种方式
    */
-  getLocationTwo: function () {
+  getLocationTwo: function() {
     this.getLocationDataTwo()
   },
-  handleLocationTwoSetting: function(e){
+  handleLocationTwoSetting: function(e) {
     if (!e.detail.authSetting['scope.userLocation']) {
       wx.showModal({
         title: '警告',
-        content: '不授权无法保存',
+        content: '不授权无法获取',
         showCancel: false
       })
       this.setData({
@@ -99,10 +96,10 @@ Page({
       })
     }
   },
-  getLocationDataTwo: function () {
+  getLocationDataTwo: function() {
     wx.getLocation({
       type: 'wgs84',
-      success:(res)=> {
+      success: (res) => {
         this.setData({
           openLocation: res
         })
@@ -111,7 +108,8 @@ Page({
           title: '获取成功',
         })
       },
-      fail:(err)=>{
+      fail: (err) => {
+
         this.setData({
           isLocationTwo: true
         })
@@ -122,7 +120,7 @@ Page({
   /**
    * 第三种方式
    */
-  getLocationTherr: function () {
+  getLocationTherr: function() {
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
@@ -153,8 +151,10 @@ Page({
     })
   },
 
-  openLocation: function(){
-    let { openLocation} = this.data;
+  openLocation: function() {
+    let {
+      openLocation
+    } = this.data;
     console.log(openLocation)
     wx.openLocation({
       latitude: openLocation.latitude,
@@ -162,11 +162,28 @@ Page({
       scale: 28
     })
   },
-  chooseLocation: function(){
+  
+  chooseLocation: function() {
     wx.chooseLocation({
-      success: (res)=> {
+      success: (res) => {
         console.log(res)
       },
+      fail: (err) => {
+        console.log(err)
+        if (err.errMsg === "chooseLocation:fail cancel") {
+
+        } else {
+          this.setData({
+            isShowOpenSetting: true
+          })
+        }
+      }
     })
-  }
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  },
 })

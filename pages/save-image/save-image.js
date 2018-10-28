@@ -106,7 +106,6 @@ Page({
     wx.downloadFile({
       url: urlStr,
       success: (res) => {
-        
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success: (data) => {
@@ -116,6 +115,44 @@ Page({
               icon: 'success',
               duration: 1500
             })
+          }, fail: (err) => {
+            wx.hideLoading()
+
+            console.log(err)
+          }
+        })
+      }
+    })
+  },
+  /**
+   * 第三种方式
+   */
+  therrSaveImg: function(){
+    let {
+      urlStr
+    } = this.data;
+    wx.downloadFile({
+      url: urlStr,
+      success: (res) => {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: (data) => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 1500
+            })
+          }, fail: (err) => {
+            wx.hideLoading()
+            if (err.errMsg === "saveImageToPhotosAlbum:fail cancel"){
+
+            }else{
+              this.setData({
+                isShowOpenSetting: true
+              })
+            }
+            console.log(err)
           }
         })
       }

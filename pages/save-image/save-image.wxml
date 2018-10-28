@@ -1,7 +1,7 @@
 <view>
   <open-setting 
   title="系统授权" 
-  content='我们要授权请你同意!' 
+  content='我们要授权相册请你同意!' 
   cancelText='取消' 
   confirmText='授权' 
   bind:cancelEvent="cancelEvent" 
@@ -17,13 +17,23 @@
   <view class="desc_view">
     第一种方式
   </view>
-  <button bindtap="oneSaveImg">第一种套路</button>
+  <button class='button' bindtap="oneSaveImg">第一种套路</button>
 
 
 
   <view class="desc_view">
     第二种方式
   </view>
-  <button  wx:if="{{isPicTwo}}" open-type="openSetting" bindopensetting="handleSetting">授权保存</button>
-  <button  wx:else bindtap="twoSaveImg">第二种套路</button>
+  <button class='button' wx:if="{{isPicTwo}}" open-type="openSetting" bindopensetting="handleSetting">授权保存</button>
+  <button class='button' wx:else bindtap="twoSaveImg">第二种套路</button>
+
+  <view class="desc_view">
+    第三种方式
+  </view>
+
+  <button class='button' bindtap="therrSaveImg">第三种套路</button>
+
+
+
+
 </view>
