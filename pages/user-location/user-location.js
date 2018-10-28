@@ -7,7 +7,8 @@ Page({
    */
   data: {
     isLocationTwo: false,
-    isShowOpenSetting: false
+    isShowOpenSetting: false,
+    openLocation: null
   },
   onShow: function(){
     let { isLocationTwo, isShowOpenSetting} = this.data;
@@ -42,8 +43,9 @@ Page({
   },
   //确认事件
   confirmEvent(e) {
+    //拿到 open-setting components 返回值
     console.log(e.detail)
-    if (e.detail.state && e.detail.scope === 'scope.userLocation') {
+    if (e.detail.state && e.detail.scope === 'scope.userLocation')      {
       wx.showToast({
         title: '授权成功'
       })
@@ -63,6 +65,9 @@ Page({
       type: 'wgs84',
       success: (res) => {
         console.log(res)
+        this.setData({
+          openLocation: res
+        })
         wx.showToast({
           title: '获取成功',
         })
@@ -98,6 +103,9 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success:(res)=> {
+        this.setData({
+          openLocation: res
+        })
         console.log(res)
         wx.showToast({
           title: '获取成功',
@@ -119,6 +127,9 @@ Page({
       type: 'wgs84',
       success: (res) => {
         console.log(res)
+        this.setData({
+          openLocation: res
+        })
         wx.showToast({
           title: '获取成功',
         })
@@ -141,5 +152,21 @@ Page({
       }
     })
   },
-  
+
+  openLocation: function(){
+    let { openLocation} = this.data;
+    console.log(openLocation)
+    wx.openLocation({
+      latitude: openLocation.latitude,
+      longitude: openLocation.longitude,
+      scale: 28
+    })
+  },
+  chooseLocation: function(){
+    wx.chooseLocation({
+      success: (res)=> {
+        console.log(res)
+      },
+    })
+  }
 })

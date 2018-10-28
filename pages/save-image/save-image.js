@@ -1,7 +1,7 @@
 const app = getApp();
 Page({
   data: {
-    isPic: false,
+    isPicTwo: false,
     isShowOpenSetting: false,
     urlStr: 'http://wx.qlogo.cn/mmopen/98Nz5LFElxzjUXYDtia8tTpU3fQGqB80BasKdDFVMKibwNnIib3ZMD9Km53YM58sMFCdHxB74aicFVibyM37ZAYibmpNpQyYiafeibzu/0'
   },
@@ -9,11 +9,15 @@ Page({
    * 第一种方式
    */
   oneSaveImg: function () {
+    wx.showLoading({
+      title: '正在处理',
+    })
     app.getSetting('scope.writePhotosAlbum').then((data) => {
       console.log(data)
       this.savePhoto()
     }).catch((err) => {
       console.log(err)
+      wx.hideLoading()
       this.setData({
         isShowOpenSetting: true
       })
@@ -47,6 +51,9 @@ Page({
    *  第二种方式
    */
   twoSaveImg() {
+    wx.showLoading({
+      title: '正在处理',
+    })
     wx.getSetting({
       success: (res) => {
         //不存在相册授权
@@ -56,16 +63,18 @@ Page({
             success: () => {
               this.savePhoto();
               this.setData({
-                isPic: false
+                isPicTwo: false
               })
             },
             fail: (err) => {
+              wx.hideLoading()
               this.setData({
-                isPic: true
+                isPicTwo: true
               })
             }
           })
         } else {
+          wx.hideLoading()
           this.savePhoto();
         }
       }
@@ -79,14 +88,14 @@ Page({
         showCancel: false
       })
       this.setData({
-        isPic: true
+        isPicTwo: true
       })
     } else {
       wx.showToast({
         title: '授权成功'
       })
       this.setData({
-        isPic: false
+        isPicTwo: false
       })
     }
   },
@@ -97,9 +106,11 @@ Page({
     wx.downloadFile({
       url: urlStr,
       success: (res) => {
+        
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success: (data) => {
+            wx.hideLoading()
             wx.showToast({
               title: '保存成功',
               icon: 'success',

@@ -1,3 +1,6 @@
 .desc_view:nth-of-type(1){
   margin-top: 30rpx;
 }
+.small_title{
+  color: green;
+}

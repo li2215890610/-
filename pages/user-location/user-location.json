@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "获取位置",
   "usingComponents": {
-    "open-setting": "/common/open-setting/open-setting"
+    "open-setting": "/components/open-setting/open-setting"
   }
 }

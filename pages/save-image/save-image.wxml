@@ -24,6 +24,6 @@
   <view class="desc_view">
     第二种方式
   </view>
-  <button  wx:if="{{isPic}}" open-type="openSetting" bindopensetting="handleSetting">授权保存</button>
+  <button  wx:if="{{isPicTwo}}" open-type="openSetting" bindopensetting="handleSetting">授权保存</button>
   <button  wx:else bindtap="twoSaveImg">第二种套路</button>
 </view>
