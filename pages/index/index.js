@@ -19,17 +19,4 @@ Page({
       url: '/pages/user-address/user-address'
     })
   },
-  onShareAppMessage: function() {
-    return {
-      title: '来自休休漠漠',
-      desc: '这是一个测试分享',
-      path: '/pages/test/test',
-      success: function(res) {
-        console.log(res)
-      },
-      fail: function(res) {
-        console.log(res)
-      }
-    }
-  }
 })

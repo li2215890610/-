@@ -158,17 +158,4 @@ Page({
       }
     })
   },
-  onShareAppMessage: function () {
-    return {
-      title: '来自休休漠漠',
-      desc: '这是一个测试分享',
-      path: '/pages/test/test',
-      success: (res) => {
-        console.log(res)
-      },
-      fail: (res) => {
-        console.log(res)
-      }
-    }
-  }
 })
