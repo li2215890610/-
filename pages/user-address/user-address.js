@@ -7,9 +7,7 @@ Page({
     isShowAddress: false,
     isShowOpenSetting: false
   },
-  onShow: function() {
 
-  },
   /***
    * 第一种
    */
@@ -17,11 +15,18 @@ Page({
     wx.showLoading({
       title: '正在处理',
     })
+    this.getSetting()
+  },
+
+  getSetting: function () {
     app.getSetting('scope.address').then((data) => {
-      console.log(data)
+      wx.showLoading({
+        title: '正在处理',
+      })
       this.getHandleAddress()
     }).catch((err) => {
       console.log(err)
+
       wx.hideLoading()
       this.setData({
         isShowOpenSetting: true
@@ -72,11 +77,13 @@ Page({
         isShowAddress: false
       })
     }
+
   },
   twoAddress: function() {
     wx.showLoading({
       title: '正在处理',
     })
+
     wx.chooseAddress({
       success: (res) => {
         wx.hideLoading()
@@ -109,7 +116,6 @@ Page({
       success: (res) => {
         wx.hideLoading()
         console.log(res)
-
       },
       fail: (err) => {
         console.log(err)
@@ -118,19 +124,7 @@ Page({
         if (err.errMsg === "chooseAddress:fail cancel"){
 
         }else{
-          app.getSetting('scope.address').then((data) => {
-            wx.showLoading({
-              title: '正在处理',
-            })
-            this.getHandleAddress()
-          }).catch((err) => {
-            console.log(err)
-
-            wx.hideLoading()
-            this.setData({
-              isShowOpenSetting: true
-            })
-          })
+          this.getSetting()
         }
       }
     })
@@ -144,11 +138,9 @@ Page({
       success: (res) => {
         wx.hideLoading()
         console.log(res)
-
       },
       fail: (err) => {
         wx.hideLoading()
-
       }
     })
   },

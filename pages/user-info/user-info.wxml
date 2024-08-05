@@ -1,2 +1,14 @@
+<button open-type="chooseAvatar" bind:chooseavatar="onGetUserInfo" >获取用户头像，可以从bindchooseavatar回调中获取到头像信息</button>
 
-  <button class="button" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">点击同步</button>
+<view data-weui-theme="{{theme}}">
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button> 
+  <mp-form>
+    <mp-cells>
+      <mp-cell title="昵称">
+        <input type="nickname" class="weui-input" placeholder="请输入昵称"/>
+      </mp-cell>
+    </mp-cells>
+  </mp-form>
+</view>

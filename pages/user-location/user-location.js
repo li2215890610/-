@@ -1,4 +1,5 @@
 const app = new getApp()
+
 Page({
 
   /**
@@ -14,16 +15,22 @@ Page({
       isLocationTwo,
       isShowOpenSetting
     } = this.data;
+
     //配合第二种方式
     if (isLocationTwo || isShowOpenSetting) {
       this.getLocationData();
     }
+
   },
   /**
    * 第一种方式
    */
   getLocationOne: function() {
+
     app.getSetting("scope.userLocation").then((data) => {
+      this.setData({
+        isShowOpenSetting: false
+      })
       this.getLocationData()
     }).catch((err) => {
       console.log(err)
@@ -58,10 +65,12 @@ Page({
   },
 
   getLocationData: function() {
+    debugger
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
         console.log(res)
+        debugger
         this.setData({
           openLocation: res
         })
@@ -71,6 +80,8 @@ Page({
       }
     })
   },
+
+
   /**
    * 第二种方式
    */
@@ -135,23 +146,16 @@ Page({
       fail: (err) => {
         this.setData({
           isShowOpenSetting: true
+        },()=>{
+          this.getLocationOne()
         })
-        app.getSetting("scope.userLocation").then((data) => {
-          this.setData({
-            isShowOpenSetting: false
-          })
-          this.getLocationData()
-        }).catch((err) => {
-          console.log(err)
-          this.setData({
-            isShowOpenSetting: true
-          })
-        })
+        
       }
     })
   },
 
   openLocation: function() {
+    debugger
     let {
       openLocation
     } = this.data;

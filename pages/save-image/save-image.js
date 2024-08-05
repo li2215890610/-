@@ -15,8 +15,9 @@ Page({
     app.getSetting('scope.writePhotosAlbum').then((data) => {
       console.log(data)
       this.savePhoto()
+      debugger
     }).catch((err) => {
-      console.log(err)
+      console.log('------', err)
       wx.hideLoading()
       this.setData({
         isShowOpenSetting: true
@@ -34,9 +35,10 @@ Page({
       isShowOpenSetting: false
     })
   },
+
   //确认事件
   confirmEvent(e) {
-    if (e.detail.state && e.detail.scope === 'scope.writePhotosAlbum'){
+    if (e.detail.state && e.detail.scope === 'scope.writePhotosAlbum') {
       wx.showToast({
         title: '授权成功'
       })
@@ -46,7 +48,7 @@ Page({
     }
   },
 
-  
+
   /***
    *  第二种方式
    */
@@ -103,31 +105,21 @@ Page({
     let {
       urlStr
     } = this.data;
+
     wx.downloadFile({
       url: urlStr,
       success: (res) => {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success: (data) => {
-            wx.hideLoading()
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 1500
-            })
-          }, fail: (err) => {
-            wx.hideLoading()
-
-            console.log(err)
-          }
-        })
+        debugger
+        this.saveImageToPhotosAlbum(res)
       }
     })
   },
+
+  
   /**
    * 第三种方式
    */
-  therrSaveImg: function(){
+  therrSaveImg: function () {
     let {
       urlStr
     } = this.data;
@@ -143,11 +135,12 @@ Page({
               icon: 'success',
               duration: 1500
             })
-          }, fail: (err) => {
+          },
+          fail: (err) => {
             wx.hideLoading()
-            if (err.errMsg === "saveImageToPhotosAlbum:fail cancel"){
-
-            }else{
+            if (err.errMsg === "saveImageToPhotosAlbum:fail cancel") {
+              console.log('保存失败');
+            } else {
               this.setData({
                 isShowOpenSetting: true
               })
@@ -158,4 +151,24 @@ Page({
       }
     })
   },
+  saveImageToPhotosAlbum: function (res) {
+    wx.saveImageToPhotosAlbum({
+      filePath: res.tempFilePath,
+      success: (data) => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success',
+          duration: 1500
+        })
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        wx.showModal({
+          title: "保存失败"
+        })
+        console.log(err)
+      }
+    })
+  }
 })
